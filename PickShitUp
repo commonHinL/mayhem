@@ -1,3 +1,5 @@
+print("script go brrrr")
+
 local spawnParentName = nil
 local previousSpawnParentName = nil
 
