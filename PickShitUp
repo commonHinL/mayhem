@@ -37,7 +37,7 @@ local range = player.Range.Value - 4
 while true do
     GetParentsName()
     ranNumber()
-    local cooldownNumberValue = player.Cooldown.CooldownNumber.Value + randomValue
+    local cooldownNumberValue = tonumber(player.Cooldown.CooldownNumber.Value + randomValue))
     local spawnParent = workspace:FindFirstChild(spawnParentName)
 
     if spawnParent then
