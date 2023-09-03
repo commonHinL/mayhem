@@ -20,11 +20,21 @@ local function GetParentsName()
     -- Check if spawnParentName has changed
     if spawnParentName ~= previousSpawnParentName then
         previousSpawnParentName = spawnParentName
-        wait(2)
-        local player = game.Players.LocalPlayer
-		local character = player.Character
+        wait(3)
+        local spawnParentName = nil
+
+		for _, descendant in ipairs(game.Workspace:GetDescendants()) do
+			if descendant:IsA("BasePart") and descendant.Name == "Spawn" then
+				spawnPartPosition = descendant.Parent and descendant.Position or "No Parent"
+				break
+			end
+		end
 		
-		character:WaitForChild("HumanoidRootPart").CFrame = workspace.Void.Spawn.CFrame
+		
+		local player = game.Players.LocalPlayer
+		local character = player.Character
+		print(spawnParentName)
+		character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(spawnPartPosition)
     end
 end
 
@@ -41,4 +51,3 @@ while _G.on == true do
 	game.Players.LocalPlayer.Character.Humanoid:MoveTo(newRandom)
 	wait(6)
 end
-
