@@ -36,7 +36,7 @@ local range = player.Range.Value - 4
 
 while true do
     GetParentsName()
-    local cooldownNumberValue = player.Cooldown.CooldownNumber.Value
+    local cooldownNumberValue = player.Cooldown.CooldownNumber.Value + random_number
 
     local spawnParent = workspace:FindFirstChild(spawnParentName)
 
@@ -62,7 +62,7 @@ while true do
                 end
             end
             if nearestClickDetector then
-                wait(cooldownNumberValue + random_number)
+                wait(cooldownNumberValue)
                 fireclickdetector(nearestClickDetector)
             else
                 wait(cooldownNumberValue)
