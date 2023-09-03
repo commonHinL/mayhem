@@ -1,0 +1,72 @@
+local spawnParentName = nil
+local previousSpawnParentName = nil
+
+local function GetParentsName()
+    for _, descendant in ipairs(game.Workspace:GetDescendants()) do
+        if descendant:IsA("BasePart") and descendant.Name == "Spawn" then
+            spawnParentName = descendant.Parent and descendant.Parent.Name or "No Parent"
+            break
+        end
+    end
+
+    if spawnParentName then
+        print("Found the 'Spawn' part's parent. Its name is: " .. spawnParentName)
+    else
+        print("Did not find the 'Spawn' part in Workspace.")
+    end
+
+    -- Check if spawnParentName has changed
+    if spawnParentName ~= previousSpawnParentName then
+        previousSpawnParentName = spawnParentName
+        wait(2)
+    end
+end
+
+local player = game:GetService("Players").LocalPlayer
+
+-- Define the range you want to use
+local range = player.Range.Value - 4
+
+while true do
+    GetParentsName()
+    local cooldownNumberValue = player.Cooldown.CooldownNumber.Value
+
+    local spawnParent = workspace:FindFirstChild(spawnParentName)
+
+    if spawnParent then
+        local spawn = spawnParent:FindFirstChild("Spawn")
+
+        if spawn then
+            GetParentsName()
+            local nearestClickDetector = nil
+            local nearestDistance = range
+            	
+            for _, child in pairs(spawn:GetChildren()) do
+                local clickDetector = child:FindFirstChild("ClickDetector")
+                if clickDetector then
+                    local clickDetectorPosition = clickDetector.Parent.Position
+                    local playerPosition = player.Character.HumanoidRootPart.Position
+                    local distance = (playerPosition - clickDetectorPosition).Magnitude
+
+                    if distance <= range and distance < nearestDistance then
+                        nearestClickDetector = clickDetector
+                        nearestDistance = distance
+                    end
+                end
+            end
+            if nearestClickDetector then
+                wait(cooldownNumberValue + 0.1)
+                fireclickdetector(nearestClickDetector)
+            else
+                wait(cooldownNumberValue + 0.1)
+                warn("No valid ClickDetector found within range.")
+            end
+        else
+            wait(cooldownNumberValue + 0.1)
+            warn("No 'Spawn' found under '" .. spawnParentName .. "'.")
+        end
+    else
+        wait(cooldownNumberValue + 0.1)
+        warn("Spawn parent not found in workspace.")
+    end
+end
