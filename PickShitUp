@@ -3,9 +3,12 @@ print("script go brrrr")
 local spawnParentName = nil
 local previousSpawnParentName = nil
 
-local RNG = Random.new(tick())
-for i = 1, 10 do
-	local random_number = RNG:NextNumber(0.3, 0.7)
+local function ranNumber()
+	local RNG = Random.new(tick())
+	for i = 1, 10 do
+		local random_number = RNG:NextNumber(0.3, 0.7)
+		tonumber(random_number))
+	end
 end
 
 local function GetParentsName()
@@ -36,9 +39,8 @@ local range = player.Range.Value - 4
 
 while true do
     GetParentsName()
-    local cooldownNumberValue = player.Cooldown.CooldownNumber.Value
-    local num = cooldownNumberValue + math.random()*0.2
-
+    ranNumber()
+    local cooldownNumberValue = player.Cooldown.CooldownNumber.Value + random_number
     local spawnParent = workspace:FindFirstChild(spawnParentName)
 
     if spawnParent then
