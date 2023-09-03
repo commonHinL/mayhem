@@ -1,6 +1,11 @@
 local spawnParentName = nil
 local previousSpawnParentName = nil
 
+local RNG = Random.new(tick())
+for i = 1, 10 do
+	local random_number = RNG:NextNumber(0.3, 0.7)
+end
+
 local function GetParentsName()
     for _, descendant in ipairs(game.Workspace:GetDescendants()) do
         if descendant:IsA("BasePart") and descendant.Name == "Spawn" then
@@ -55,7 +60,7 @@ while true do
                 end
             end
             if nearestClickDetector then
-                wait(cooldownNumberValue + 0.2)
+                wait(cooldownNumberValue + random_number)
                 fireclickdetector(nearestClickDetector)
             else
                 wait(cooldownNumberValue)
