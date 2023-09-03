@@ -55,18 +55,18 @@ while true do
                 end
             end
             if nearestClickDetector then
-                wait(cooldownNumberValue + 0.1)
+                wait(cooldownNumberValue + 0.2)
                 fireclickdetector(nearestClickDetector)
             else
-                wait(cooldownNumberValue + 0.1)
+                wait(cooldownNumberValue)
                 warn("No valid ClickDetector found within range.")
             end
         else
-            wait(cooldownNumberValue + 0.1)
+            wait(cooldownNumberValue)
             warn("No 'Spawn' found under '" .. spawnParentName .. "'.")
         end
     else
-        wait(cooldownNumberValue + 0.1)
+        wait(cooldownNumberValue)
         warn("Spawn parent not found in workspace.")
     end
 end
