@@ -1,0 +1,44 @@
+-- die
+_G.on = true
+
+local spawnParentName = nil
+
+local function GetParentsName()
+    for _, descendant in ipairs(game.Workspace:GetDescendants()) do
+        if descendant:IsA("BasePart") and descendant.Name == "Spawn" then
+            spawnParentName = descendant.Parent and descendant.Parent.Name or "No Parent"
+            break
+        end
+    end
+
+    if spawnParentName then
+        print("Found the 'Spawn' part's parent. Its name is: " .. spawnParentName)
+    else
+        print("Did not find the 'Spawn' part in Workspace.")
+    end
+
+    -- Check if spawnParentName has changed
+    if spawnParentName ~= previousSpawnParentName then
+        previousSpawnParentName = spawnParentName
+        wait(2)
+        local player = game.Players.LocalPlayer
+		local character = player.Character
+		
+		character:WaitForChild("HumanoidRootPart").CFrame = workspace.Void.Spawn.CFrame
+    end
+end
+
+GetParentsName()
+
+
+local radius = 150
+while _G.on == true do
+	GetParentsName()
+	local targetPart = workspace:FindFirstChild(spawnParentName).Spawn.Position -- Get the target position
+	local randomOffset = Vector3.new(math.random(-radius, radius), 0, math.random(-radius, radius))
+	local newRandom = targetPart + randomOffset
+	
+	game.Players.LocalPlayer.Character.Humanoid:MoveTo(newRandom)
+	wait(6)
+end
+
