@@ -66,8 +66,8 @@ while true do
                 wait(cooldownNumberValue)
                 fireclickdetector(nearestClickDetector)
 		blockCount = blockCount + 1
-		if blockCount >= 25
-			wait(10)
+		if blockCount >= 30 then
+			wait(15)
 		end
             else
                 wait(cooldownNumberValue)
