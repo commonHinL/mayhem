@@ -1,13 +1,10 @@
-print("script go brrrr")
-
 local spawnParentName = nil
 local previousSpawnParentName = nil
-local blockCount = 0
 
+-- Define a function to generate a random number between 0.3 and 0.8
 local function ranNumber()
-	local randomValue = math.random() * 0.5 + 0.3
+    return math.random() * 0.1 + 0.5
 end
-
 
 local function GetParentsName()
     for _, descendant in ipairs(game.Workspace:GetDescendants()) do
@@ -33,12 +30,12 @@ end
 local player = game:GetService("Players").LocalPlayer
 
 -- Define the range you want to use
-local range = player.Range.Value - 8
+local range = player.Range.Value - 4
 
 while true do
     GetParentsName()
-    ranNumber()
-    local cooldownNumberValue = tonumber(player.Cooldown.CooldownNumber.Value + randomValue))
+    local randomValue = ranNumber() -- Generate a random number here
+    local cooldownNumberValue = tonumber(player.Cooldown.CooldownNumber.Value) + randomValue
     local spawnParent = workspace:FindFirstChild(spawnParentName)
 
     if spawnParent then
@@ -48,7 +45,7 @@ while true do
             GetParentsName()
             local nearestClickDetector = nil
             local nearestDistance = range
-            	
+
             for _, child in pairs(spawn:GetChildren()) do
                 local clickDetector = child:FindFirstChild("ClickDetector")
                 if clickDetector then
@@ -65,10 +62,6 @@ while true do
             if nearestClickDetector then
                 wait(cooldownNumberValue)
                 fireclickdetector(nearestClickDetector)
-		blockCount = blockCount + 1
-		if blockCount >= 30 then
-			wait(15)
-		end
             else
                 wait(cooldownNumberValue)
                 warn("No valid ClickDetector found within range.")
