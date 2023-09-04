@@ -2,6 +2,7 @@ print("script go brrrr")
 
 local spawnParentName = nil
 local previousSpawnParentName = nil
+local blockCount = 0
 
 local function ranNumber()
 	local randomValue = math.random() * 0.5 + 0.3
@@ -64,6 +65,10 @@ while true do
             if nearestClickDetector then
                 wait(cooldownNumberValue)
                 fireclickdetector(nearestClickDetector)
+		blockCount = blockCount + 1
+		if blockCount >= 25
+			wait(10)
+		end
             else
                 wait(cooldownNumberValue)
                 warn("No valid ClickDetector found within range.")
