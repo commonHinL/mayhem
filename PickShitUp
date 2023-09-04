@@ -32,7 +32,7 @@ end
 local player = game:GetService("Players").LocalPlayer
 
 -- Define the range you want to use
-local range = player.Range.Value - 4
+local range = player.Range.Value - 8
 
 while true do
     GetParentsName()
