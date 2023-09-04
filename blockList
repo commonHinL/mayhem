@@ -18,7 +18,7 @@ local blockOrder = {
     "Aquavortex",
     "Serene",
     "Nebula",
-    "Exotic Diamond",
+    "ExoticDiamond",
     "Eternal",
     "Paragon",
     "Immortal",
