@@ -15,7 +15,7 @@ local function GetParentsName()
     end
 
     if spawnParentName then
-        print("Found the 'Spawn' part's parent. Its name is: " .. spawnParentName)
+        
     else
         print("Did not find the 'Spawn' part in Workspace.")
     end
